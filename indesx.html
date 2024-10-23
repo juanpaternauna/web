@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.colmayor.edu.co/wp-content/uploads/2021/07/EmbeddedImage-8.png'); /* Imagen de fondo */
+            background-size: cover; /* Cubre toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* No repetir la imagen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white; /* Color general del texto */
+        }
+        #loginContainer {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco de transparencia */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        #profile {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        h1, label {
+            color: black; /* Cambia el color del título y las etiquetas a negro */
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer">
+        <h1>Iniciar Sesión</h1>
+        <form action="login.php" method="POST">
+            <label for="username">Pon tu Gmail:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Iniciar Sesión">
+        </form>
+        <p>No tienes una cuenta? <a href="create_user.html">Regístrate aquí</a>.</p>
+    </div>
+    
+    <div id="profile">
+        <img src="ruta/a/tu/foto.jpg" alt="Foto de perfil" width="50" height="50">
+    </div>
+
+    <script>
+        // Esta función se ejecutará al cargar la página
+        function checkLogin() {
+            const userLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+            const loginContainer = document.getElementById('loginContainer');
+            const profile = document.getElementById('profile');
+            
+            if (userLoggedIn) {
+                loginContainer.style.display = 'none';  // Ocultar formulario
+                profile.style.display = 'block';         // Mostrar foto de perfil
+            }
+        }
+        window.onload = checkLogin;
+    </script>
+</body>
+</html>
+
+
+
+
+
